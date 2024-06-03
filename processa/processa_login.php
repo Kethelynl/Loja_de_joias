@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,7 +13,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 //verificando conexão
 //No PHP, a propriedade connect_error é usada com a classe mysqli para verificar se ocorreu algum erro ao tentar estabelecer uma conexão com um banco de dados MySQL
 if ($conn ->connect_error) {
-    die("Conexão falhou" . $conn->connect_error);
+    $_SESSION['mensagem'] = "Conexão falhou" . $conn->connect_error;
+    header("Location: ../login.php");
+    exit();
 }
 
 //obtendo dados do formulário e validando
@@ -21,14 +25,17 @@ $senha = trim($_POST['senha']);
 
 //A função empty() em PHP é usada para verificar se uma variável está vazia
 if(empty($email) || empty($senha)){
-    die("Todos os campos são obrigatórios");
+    $_SESSION['mensagem'] = "Todos os campos são obrigatórios";
+    header("Location: ../login.php");
 }
 
 //A função filter_var() no PHP é usada para filtrar variáveis com base em requisitos específicos, como validação de e-mail, validação de URL, remoção de caracteres indesejados etc. O operador ! usado antes de filter_var() inverte o resultado da função, ou seja, ele retorna true se filter_var() retornar false, e vice-versa.
 
 //O filtro FILTER_VALIDATE_EMAIL é usado junto com a função filter_var() no PHP para validar se uma string é um endereço de e-mail válido de acordo com as regras de formatação definidas nas RFCs 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("Email inválido. ");
+    $_SESSION['mensagem'] = "Email inválido. ";
+    header("Location: ../login.php");
+    exit();
 }
 
 //verificando se o email existe nos dados
@@ -45,7 +52,9 @@ $stmt->store_result();
 
 //A função num_rows é usada para obter o número de linhas retornadas por uma consulta SELECT no MySQL quando você está usando a API MySQLi (MySQL Improved) em PHP.
 if ($stmt->num_rows == 0) {
-    die("Email ou senha incorretos.");
+    $_SESSION['mensagem'] = "Email ou senha incorretos.";
+    header("Location: ../login.php");
+    exit();
 }
 //A função bind_result() em PHP é usada em conjunto com instruções SQL preparadas (usando MySQLi) para vincular variáveis às colunas do conjunto de resultados de uma consulta SQL. Isso permite que você recupere os valores das colunas da consulta e armazene esses valores diretamente nas variáveis especificadas.
 $stmt->bind_result($id, $senha_hash);
@@ -55,7 +64,9 @@ $stmt->fetch();
 //verificar a senha
 //A função password_verify() em PHP é usada para verificar se um dado hash corresponde a uma senha fornecida. Essa função é útil para autenticação de usuários, onde a senha armazenada no banco de dados é armazenada como um hash seguro, e a senha fornecida pelo usuário precisa ser comparada com esse hash para validar a identidade do usuário.
 if (!password_verify($senha, $senha_hash)) {
-    die("email ou senha incorretos. ");
+    $_SESSION['mensagem'] = "email ou senha incorretos. ";
+    header("Location: ../login.php");
+    exit();
 }
 
 //reiniciar a sessão
@@ -65,7 +76,7 @@ session_start();
 $_SESSION['id'] = $id;
 $_SESSION['email'] = $email;
 
-header("location: index.php");
+header("location: ../index.php");
 exit();
 
 //A função close() em PHP geralmente se refere a métodos que encerram conexões ou recursos abertos previamente, como conexões de banco de dados, arquivos ou sessões. A função exata e seu uso específico dependem do contexto. Aqui estão alguns exemplos comuns de close() em diferentes contextos:

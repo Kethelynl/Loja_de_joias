@@ -1,36 +1,34 @@
-body, html {
-    margin: 0;
-    padding: 0;
+body, html{
     height: 100%;
-    background-color:  rgb(168, 120, 88);
+    background-color:rgb(168, 120, 88) ;
 }
 
-.container {
-    background-color: rgb(255, 255, 255);
-    box-shadow: 5px 5px 10px rgb(105, 85, 53);
-    border-radius: 5px;
+.container{
+    display: flex;
     width: 80%;
     height: 80vh;
-    display: flex;
     margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgb(105, 85, 53);
+    background-color: rgb(243, 240, 240);
 }
 
-.imagem, .cadastro{
+.imagen_joia, .login{
     flex: 1;
 }
 
-.imagem img{
+.imagen_joia img{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.cadastro{
+.login{
     display: flex;
-    text-align: center;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 form{
@@ -38,42 +36,53 @@ form{
     max-width: 200px;
 }
 
-.cadastro h2{
-
-    margin-bottom: 12%;
+.login h2{
     color: rgb(82, 71, 57);
 }
 
-.input input{
+.recebe input{
     padding: 0.4rem;
     background-color: rgb(224, 224, 223);
-    border-radius: 5px;
+    border-radius: 7px;
 }
 
-.input input:hover{
+.recebe input:hover{
     background-color: rgb(233, 215, 187);
     transition: 1s;
 }
-.input{
-    display: flex;
-    flex-direction: column;
+
+.recebe p{
+    font-size: 12px;
 }
 
-label{
-    font-weight: bolder;
+.recebe a{
     color: rgb(168, 120, 88);
+    transition: transform 0.3 ease;
 }
 
-.cadastrar-botao input{
+.recebe a:hover{
+    color: rgb(150, 105, 76);
+    transition: 1s;
+    transform: scale(1.1);
+}
+
+.entra_botao input{
     padding: 0.6rem;
     cursor: pointer;
+    font-weight:500;
     background-color: rgb(168, 120, 88);
     border-radius: 5px ;
+    transition: trasform 0.1 ease;
+}
 
+.entra_botao input:hover{
+    background-color: rgb(133, 92, 64);
+    transform: scale(1.1);
+    transition: 1s;
 }
 
 @media(max-width: 900px){
-    .imagem img{
+    .imagen_joia img{
         display: none;
     }
 
@@ -82,7 +91,7 @@ label{
       align-items: center;
     }
 
-    .imagem, .cadastro{
+    .imagen_joia, .login{
         flex: 0;
     }
     
@@ -92,7 +101,7 @@ label{
      
     .container{
         width: 100%;
-        height: auto;
+       
     }
 
     

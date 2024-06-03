@@ -1,11 +1,16 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
     
     <title>Cadastre-se em JoiaRara</title>
 </head>
@@ -37,11 +42,17 @@
     <main>
         <div class="container">
             <div class="imagem">
-               <img src="./imagens/display-shiny-luxurious-golden-chain (2).jpg">
+               <img src="./images/display-shiny-luxurious-golden-chain (2).jpg">
             </div>
             <div class="cadastro"> 
-             <h2> Cadastro de Usuário</h2>
-             <form action="processa_cadastro.php" method="post">
+             <h2> Cadastro de Usuário</h2><br>
+             <?php
+             if(isset($_SESSION['mensagem'])) {
+               echo "<p style='color: red;'>" . $_SESSION['mensagem'] . "<p><br>";
+               unset($_SESSION['mensagem']);
+             }
+             ?>
+             <form action="./processa/processa_cadastro.php" method="post">
                 <div class="input">
                  <label for="nome">Nome</label>
                  <input type="text" id="nome" name="nome" required><br><br>
@@ -64,6 +75,6 @@
             </div>
         </div>
     </main>
-    <script src="script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

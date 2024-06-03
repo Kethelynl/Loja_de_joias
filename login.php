@@ -1,11 +1,15 @@
+<?php
+ session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/login.css">
     <title>Document</title>
 </head>
 <body>
@@ -36,11 +40,17 @@
     <main>
         <div class="container">
            <figure class="imagen_joia">
-             <img src="imagens/view-luxurious-golden-ring-felt-jewelry-display.jpg" width="10%">
+             <img src="./images/view-luxurious-golden-ring-felt-jewelry-display.jpg" width="10%">
            </figure>
            <div class="login">
-             <h2>Login</h2>
-             <form action="processa_login.php" method="post">
+             <h2>Login</h2><br>
+             <?php
+             if(isset($_SESSION['mensagem'])){
+              echo "<p style='color:red;'>" . $_SESSION['mensagem'] . "<p>";
+              unset($_SESSION['mensagem']);
+             }
+             ?>
+             <form action="./processa/processa_login.php" method="post">
                <div class="recebe">
                  <label for="email">Email</label>
                  <input type="email" id="email" name="email" required><br><br>
@@ -59,6 +69,6 @@
            </div>
         </div>
     </main>
-    <script src="script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
