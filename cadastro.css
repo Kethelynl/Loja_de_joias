@@ -1,0 +1,100 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color:  rgb(168, 120, 88);
+}
+
+.container {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 10px rgb(105, 85, 53);
+    border-radius: 5px;
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    margin: 0 auto;
+}
+
+.imagem, .cadastro{
+    flex: 1;
+}
+
+.imagem img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cadastro{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    width: 100%;
+    max-width: 200px;
+}
+
+.cadastro h2{
+
+    margin-bottom: 12%;
+    color: rgb(82, 71, 57);
+}
+
+.input input{
+    padding: 0.4rem;
+    background-color: rgb(224, 224, 223);
+    border-radius: 5px;
+}
+
+.input input:hover{
+    background-color: rgb(233, 215, 187);
+    transition: 1s;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    font-weight: bolder;
+    color: rgb(168, 120, 88);
+}
+
+.cadastrar-botao input{
+    padding: 0.6rem;
+    cursor: pointer;
+    background-color: rgb(168, 120, 88);
+    border-radius: 5px ;
+
+}
+
+@media(max-width: 900px){
+    .imagem img{
+        display: none;
+    }
+
+    .container {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .imagem, .cadastro{
+        flex: 0;
+    }
+    
+}
+
+@media (max-width:330px){
+     
+    .container{
+        width: 100%;
+        height: auto;
+    }
+
+    
+   
+}
